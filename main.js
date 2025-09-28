@@ -1,4 +1,4 @@
-document.querySelectorAll(".teclado button").forEach(btn =>{
+document.querySelectorAll("button").forEach(btn =>{
     btn.addEventListener("click", () =>{
         const valor = btn.textContent;
         Main(valor);
@@ -7,6 +7,7 @@ document.querySelectorAll(".teclado button").forEach(btn =>{
 })
 
 let operador;
+let datoTemp;
 let listIzq = [];
 let listDer = [];
 
@@ -55,9 +56,14 @@ function Main(dataKeyboard){
             break;
         }
         case '=':{
-            let izq = parseInt(listIzq.join(""));
-            let der = parseInt(listDer.join(""));
-            document.getElementById("resultado").innerText = Operarcion(izq, operador, der);
+            let izq = parseFloat(listIzq.join(""));
+            let der = parseFloat(listDer.join(""));
+            let prueba = document.getElementById("resultado").innerText = Operarcion(izq, operador, der);
+            listDer = [];
+            listIzq = [];
+            listIzq.push(prueba);
+            operador = "";
+            Display(ListIzq(), operador, "");
             break;
         }
         case 'C':{
